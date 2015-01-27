@@ -2,28 +2,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head> <title>{% block title %}MyBlog{% endblock %}</title> </head>
+
+<head> 
+  
+  <meta charset="utf-8">
+  <title>{% block title %} Blog {% endblock %}</title> 
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/static/css/normalize.css">
+  <link rel="stylesheet" href="/static/css/skeleton.css">
+
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
+</head>
 
 <body>
-    <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
-    <div id="container">
-        <div id="menu">
-            {% block nav-global %}
-
-                <!-- MENU -->
-                <h3>MyBlog</h3>
-                {% if user.is_staff %}
-                <a href="{% url 'admin:index' %}">Admin</a>
-                <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-                {% endif %}
-
-            {% endblock %}
+    <div class ="container">
+        <div class = "row"> 
+            {% block sidebar %} {% endblock %} 
         </div>
+        
+        <div class = "row" style="text-align:center;">
+            <div class="u-full-width" style="margin-top: 10%">
+                <div class="u-full-width" style="text-align:center;">
+                {% block nav-global %}
 
-        <div id="content">
-            {% block content %}{% endblock %}
+                    <!-- MENU -->
+                    <h4>The Coolest Blog on Earth</h4>
+                    {% if user.is_staff %}
+                    <a class = "button" href="{% url 'admin:index' %}">Admin</a>
+                    <a class = "button" href="{% url 'admin:blog_post_add' %}">New Post</a>
+                    {% endif %}
+
+                {% endblock %}
+                </div>
+            </div>   
+                
+            <div class="one-half column offset-by-three">
+                {% block content %}{% endblock %}
+            </div> 
+
         </div>
     </div>
-
 </body>
 </html>

@@ -6,28 +6,30 @@
         <!-- Posts  -->
         <ul>
             {% for post in posts.object_list %}
-                <div class="title">{{ post.title }}</div>
-                <ul>
-                    <div class="time">{{ post.createdAt }}</div>
-                    <div class="body">{{ post.body|linebreaks }}</div>
-                </ul>
+                <h5 class = "title" style = "margin-top: 5%;">{{ post.title }}</h5>
+                <p class = "time" style = "margin-top:-20px;">{{ post.createdAt }}</p>
+                <p style = "margin-top:-10px;">{{ post.body|linebreaks }}</p>
             {% endfor %}
         </ul>
 
         <!-- Next/Prev page links  -->
         {% if posts.object_list and posts.paginator.num_pages > 1 %}
-        <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
+        <div class="pagination" class="u-full-width" style="text-align:center; margin-top:10%;">
             <span class="step-links">
                 {% if posts.has_previous %}
-                    <a href= "?page={{ posts.previous_page_number }}">newer entries &lt;&lt; </a>
+                    <a class="button" href= "?page={{ posts.previous_page_number }}">back</a>
+                {% else %}
+                    <a class="button disabled" href= "">back</a>
                 {% endif %}
 
-                <span class="current">
-                    &nbsp;Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                <span class="current not-on-mobile" style="margin-left:20px; margin-right:20px;">
+                    {{ posts.number }} of {{ posts.paginator.num_pages }}
                 </span>
 
                 {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}"> &gt;&gt; older entries</a>
+                    <a class="button" href="?page={{ posts.next_page_number }}">next</a>
+                {% else %}
+                    <a class="button disabled" href= "">next</a>
                 {% endif %}
             </span>
         </div>
