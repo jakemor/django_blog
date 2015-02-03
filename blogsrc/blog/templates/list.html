@@ -3,19 +3,6 @@
 {% block content %}
     <div class="main">
 
-        <div class="u-full-width">
-            <div class="u-full-width" style="text-align:center;">
-
-                <!-- MENU -->
-                <h4>The Coolest Blog on Earth</h4>
-                {% if user.is_staff %}
-                <a class = "button" href="{% url 'admin:index' %}">Admin</a>
-                <a class = "button" href="{% url 'admin:blog_post_add' %}">New Post</a>
-                {% endif %}
-
-            </div>
-        </div>
-
         <!-- Posts  -->
         <ul>
             {% for post in posts.object_list %}
