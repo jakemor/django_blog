@@ -8,7 +8,9 @@ urlpatterns = patterns('',
     url(r'^$', 'todo_app.views.main', name='main'),
     url(r'^home/$', 'todo_app.views.main', name='main'),
     # url(r'^blog/', include('blog.urls')),
+    url(r'^logout/$', 'todo_app.views.user_logout'),
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     #url(r'^register/$', 'django.contrib.auth.views.UserCreationForm', {'template_name': 'register.html'}),
     url(r'^admin/', include(admin.site.urls)),
+
 )
