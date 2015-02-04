@@ -18,6 +18,3 @@ def main(request):
     the_list = todo_item.objects.all()
     return render_to_response("list.html", dict(todo_items=the_list, user=request.user))
 
-def user_logout(request):
-    logout(request)
-    return redirect('/home')
