@@ -38,20 +38,20 @@ def main(request):
 
     if not request.user.is_authenticated():
         return redirect('/login')
-
+    user = request.user.id
     if request.method == 'POST':
         print request.POST['content']
         # create a form instance and populate it with data from the request:
         form = add_todo(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            p = todo_item(content=form.cleaned_data["content"],created_at="2015-02-04",completed="false",owner=request.user)
+            p = todo_item(content=form.cleaned_data["content"],created_at="2015-02-04",completed="false", owner_id= user)
             p.save()
             return HttpResponseRedirect("/home")
     else:
         form = add_todo()
 
-    the_list = todo_item.objects.filter(user=request.user)
+    the_list = todo_item.objects.filter(owner_id=user)
     return render_to_response("list.html", dict(todo_items=the_list, user=request.user, form=form))
 
 def user_logout(request):
