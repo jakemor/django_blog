@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <div class="main">
 
         <h1>{{ user.username }}'s Todo List</h1>
+
+     <form action="" method="post">
+	    {% csrf_token %}
+	    <table>
+		    <tr>
+		        <td>{{ form.content.label_tag }}</td>
+		        <td>{{ form.content }}</td>
+		    </tr>
+	    </table>
+
+      <input type="submit" value="Add item">
+  </form>
         <p><a href ="/logout">log out</a></p>
 
         {% for item in todo_items %}
@@ -15,3 +28,5 @@
     </div>
 
 {% endblock %}
+
+
