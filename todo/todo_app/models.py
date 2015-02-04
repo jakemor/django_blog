@@ -5,7 +5,7 @@ class todo_item(models.Model):
     # owner = models.ForeignKey(User)
     owner = models.ForeignKey(User)
     created_at = models.DateTimeField('date published')
-    completed = models.BooleanField()
+    completed = models.BooleanField(False)
     content = models.CharField(max_length=500)
 
     # Override the __unicode__() method to return out something meaningful!
