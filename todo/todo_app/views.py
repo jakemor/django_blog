@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-
-
+from todo_app.models import todo_item
 
 # Create your views here.
 def render_to_response(tmpl, data):
@@ -13,8 +12,7 @@ def render_to_response(tmpl, data):
     c = Context(data)
     return HttpResponse(t.render(c))
 
-@login_required(login_url=r'^login/$')
 def main(request):
-    todo_items = todo_items.objects.filter(owner = user._id) .order_by("createdAt")
-    return render_to_response("todo_list.html", dict(todo_items=todo_item, user=request.user))
+    the_list = todo_item.objects.all()
+    return render_to_response("list.html", dict(todo_items=the_list, user=request.user))
 
