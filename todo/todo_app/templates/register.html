@@ -2,6 +2,8 @@
 
 {% block title %}Create an account{% endblock %}
 
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
 {% block content %}
   <h1>Create an account</h1>
 

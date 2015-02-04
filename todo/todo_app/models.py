@@ -1,7 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class todo_item(models.Model):
-    owner = models.CharField(max_length=500)
+    # owner = models.ForeignKey(User)
+    owner = models.ForeignKey(User)
     created_at = models.DateTimeField('date published')
     completed = models.BooleanField()
     content = models.CharField(max_length=500)
