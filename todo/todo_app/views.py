@@ -5,8 +5,23 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from todo_app.models import todo_item
 
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
-# Create your views here.
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/home")
+    else:
+        form = UserCreationForm()
+    return render(request, "register.html", {
+        'form': form,
+    })
+
 def render_to_response(tmpl, data):
     t = loader.get_template(tmpl)
     c = Context(data)
