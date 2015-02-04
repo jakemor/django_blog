@@ -18,7 +18,6 @@ def main(request):
 
     return render_to_response("todo_list.html", dict(todo_items=todo_item, user=request.user))
 
-
 def log_in(request):
     username = request.POST['username']
     password = request.POST['password']
