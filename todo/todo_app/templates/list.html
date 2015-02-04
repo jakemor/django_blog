@@ -4,6 +4,7 @@
     <div class="main">
 
         <h1>{{ user.username }}'s Todo List</h1>
+        <p><a href ="/logout">log out</a></p>
 
         {% for item in todo_items %}
             <p><strong>{{ item.content }}</strong></p>
