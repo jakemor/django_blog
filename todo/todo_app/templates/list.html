@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="main">
+
+        <div class="u-full-width">
+            <div class="u-full-width" style="text-align:center;">
+
+                <!-- MENU -->
+                <h4>The Coolest Blog on Earth</h4>
+                {% if user.is_staff %}
+                <a class = "button" href="{% url 'admin:index' %}">Admin</a>
+                <a class = "button" href="{% url 'admin:blog_post_add' %}">New Post</a>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- Posts  -->
+        <ul>
+            {% for item in todo_items.object_list %}
+                <h5 class = "body" style = "margin-top: 5%;">{{ post.title }}</h5>
+                <p class = "time" style = "margin-top:-20px;">{{ post.createdAt }}</p>
+                <p style = "margin-top:-10px;">{{ post.body|linebreaks }}</p>
+            {% endfor %}
+        </ul>
+
+        <!--
+        {% endif %}
+
+    </div>
+
+{% endblock %}
