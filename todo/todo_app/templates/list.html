@@ -3,23 +3,13 @@
 {% block content %}
     <div class="main">
 
-        <div class="u-full-width">
-            <div class="u-full-width" style="text-align:center;">
+        <h1>{{ user.username }}'s Todo List</h1>
 
-                <!-- MENU -->
-                <h4>The Coolest Blog on Earth</h4>
-                <h6>{{ user.username }}</h6>
+        {% for item in todo_items %}
+            <p><strong>{{ item.content }}</strong></p>
+            <p>{{ item.created_at }}</p>
+        {% endfor %}
 
-            </div>
-        </div>
-
-        <!-- Posts  -->
-        <ul>
-            {% for item in todo_items %}
-                <h5 class = "body" style = "margin-top: 5%;">{{ item.content }}</h5>
-                <p class = "time" style = "margin-top:-20px;">{{ item.created_at }}</p>
-            {% endfor %}
-        </ul>
 
     </div>
 
