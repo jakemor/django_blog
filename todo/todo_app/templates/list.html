@@ -1,39 +1,63 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <div class="main">
-
-        <h1>{{ user.username }}'s Todo List</h1>
-
-        <p><a href ="/logout">log out</a></p>
-
-        <form action="/home/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Add Item" />
-        </form>
+    
+    <div class="row">
 
 
-        {% for item in todo_items %}
-            <p><strong>{{ item.content }}</strong></p>
-            <p>Added: {{ item.created_at }}</p>
-            <form action="/complete_todo/" method="post">
-            	<input type="hidden" name="item" value={{ item.id }} />
-                <input type="submit" value="Complete" />
-            </form>
-        {% endfor %}
 
-        <h1>{{ user.username }}'s Completed Tasks</h1>
-        {% for item in completed_list %}
-            <p><strong>{{ item.content }}</strong></p>
-            <p>Completed: {{ item.completed_at }}</p>
-            <form action="/complete_todo/" method="post">
-            	<input type="hidden" name="item" value={{ item.id }} />
-                <input type="submit" value="Undo" />
-            </form>
-        {% endfor %}
+        <h6 class="header">My Tasks</h6>
 
+        <table class="u-full-width">
+            <thead></thead>
+          <tbody>
+                <tr><td></td><td></td></tr>
+
+                <tr>    
+                <form action="/home/" method="post">
+                    {% csrf_token %}
+
+                 <td><input type="text" class="content" name = "content" style="width:100%;" /></td>
+                    <td><input type="submit" class = "todo-button button-primary" style="width:100%; margin-bottom: 10px;  margin-top: 12px; " value="Add" /></td>
+                </form>
+                </tr>
+
+                {% for item in todo_items %}
+                    <tr>
+                      <td><strong>{{ item.content }}</strong> <em>- {{ item.created_at }}</em></td>
+                      <td><form action="/complete_todo/" method="post">
+                        <input type="hidden" name="item" value={{ item.id }} />
+                        <input type="submit" class = "todo-button" style="width:100%;" value="done" />
+                        </form></td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+        </table>
+
+        <br>
+
+
+        <h6 class="header">completed</h6>
+
+        <table class="u-full-width">
+            <thead></thead>
+          <tbody>
+                {% for item in completed_list %}
+                    <tr>
+                      <td><strong>{{ item.content }}</strong> <em>- {{ item.completed_at }}</em></td>
+                      <td><form action="/complete_todo/" method="post">
+                        <input type="hidden" name="item" value={{ item.id }} />
+                        <input type="submit" class = "todo-button" style="width:100%;" value="Undo" />
+                        </form></td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+        </table>
+        
+    </div>
+
+    <div class="row"style="margin-bottom:30%;">
+        <p><a href ="/logout" class="button button-primary u-full-width">log out</a></p>
     </div>
 
 {% endblock %}

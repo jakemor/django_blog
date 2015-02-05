@@ -6,14 +6,14 @@
 <head> 
   
   <meta charset="utf-8">
-  <title>{% block title %} Blog {% endblock %}</title> 
+  <title>{% block title %} Todo {% endblock %}</title> 
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/static/css/normalize.css">
-  <link rel="stylesheet" href="/static/css/skeleton.css">
+  <link rel="stylesheet" href='/static/todo_app/normalize.css'>
+  <link rel="stylesheet" href='/static/todo_app/skeleton.css'>
 
   <link rel="icon" type="image/png" href="images/favicon.png" />
 
@@ -21,17 +21,12 @@
 
 <body>
     <div class ="container">
-        <div class = "row" style="margin-top: 10%">
-            {% block sidebar %} {% endblock %} 
-        </div>
+      <div class = "row" style="text-align:center; margin-top: 10%">
+        {% block content %}{% endblock %}
+      </div>
+     
         
-        <div class = "row" style="text-align:center;">
-                
-            <div class="one-half column offset-by-three">
-                {% block content %}{% endblock %}
-            </div> 
 
-        </div>
     </div>
 </body>
 </html>

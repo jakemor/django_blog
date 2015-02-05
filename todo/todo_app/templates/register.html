@@ -2,28 +2,32 @@
 
 {% block title %}Create an account{% endblock %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
 {% block content %}
-  <h1>Create an account</h1>
+	<h4 class="title">Create an Account</h4>
+	<p>If you think you're a doer.</p>
+	<br>
+
+	{% if form.errors %}
+	<p>Either your passwords don't match, or that username already exists. Please try again. </p>
+	{% endif %}
 
   <form action="" method="post">
 	{% csrf_token %}
-	<table>
-		<tr>
-		    <td>{{ form.username.label_tag }}</td>
-		    <td>{{ form.username }}</td>
-		</tr>
-		<tr>
-		    <td>{{ form.password1.label_tag }}</td>
-		    <td>{{ form.password1 }}</td>
-		</tr>
-		<tr>
-		    <td>{{ form.password2.label_tag }}</td>
-		    <td>{{ form.password2 }}</td>
-		</tr>
-	</table>
 
-      <input type="submit" value="Create the account">
+	{{ form.username.label_tag }}
+	{{ form.username }}
+
+
+	{{ form.password1.label_tag }}
+	{{ form.password1 }}
+
+	{{ form.password2.label_tag }}
+	{{ form.password2 }}
+
+	<br>
+
+      <input type="submit" value="Create"class="button-primary">
   </form>
+
+  <p>Already have an account? You can sign in <a href ="/login">here</a>.</p>
 {% endblock %}

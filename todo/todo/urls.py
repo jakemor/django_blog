@@ -7,7 +7,6 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'todo_app.views.main', name='main'),
     url(r'^home/$', 'todo_app.views.main', name='main'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^logout/$', 'todo_app.views.user_logout'),
     url(r'^complete_todo/$', 'todo_app.views.complete_todo'),
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
