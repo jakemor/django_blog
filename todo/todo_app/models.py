@@ -7,6 +7,7 @@ class todo_item(models.Model):
     created_at = models.DateTimeFielddate = models.DateTimeField(auto_now_add=True, blank=True)
     completed = models.BooleanField(default = False)
     content = models.CharField(max_length=500)
+    completed_at = models.DateTimeFielddate = models.DateTimeField(auto_now_add=True, blank=True)
 
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):

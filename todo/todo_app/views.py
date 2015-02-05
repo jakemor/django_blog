@@ -52,7 +52,8 @@ def main(request):
     else:
         form = add_todo()
     the_list = todo_item.objects.filter(owner_id=user).filter(completed = False).order_by("-created_at")
-    return render_to_response("list.html", dict(todo_items=the_list, user=request.user, form=form))
+    completed_list = todo_item.objects.filter(owner_id=user).filter(completed = True).order_by("-created_at")
+    return render_to_response("list.html", dict(todo_items=the_list, completed_list = completed_list, user=request.user, form=form))
 
 def user_logout(request):
     logout(request)
@@ -62,6 +63,7 @@ def user_logout(request):
 def complete_todo(request):
     completed_id = request.POST['item']
     completed_item = todo_item.objects.get(id=completed_id)
-    completed_item.completed = True
+    completed_item.completed = not completed_item.completed
+    completed_item.completed_at = datetime.datetime.now()
     completed_item.save()
     return redirect('/home')

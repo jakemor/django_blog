@@ -17,10 +17,20 @@
 
         {% for item in todo_items %}
             <p><strong>{{ item.content }}</strong></p>
-            <p>{{ item.created_at }}</p>
+            <p>Added: {{ item.created_at }}</p>
             <form action="/complete_todo/" method="post">
             	<input type="hidden" name="item" value={{ item.id }} />
                 <input type="submit" value="Complete" />
+            </form>
+        {% endfor %}
+
+        <h1>{{ user.username }}'s Completed Tasks</h1>
+        {% for item in completed_list %}
+            <p><strong>{{ item.content }}</strong></p>
+            <p>Completed: {{ item.completed_at }}</p>
+            <form action="/complete_todo/" method="post">
+            	<input type="hidden" name="item" value={{ item.id }} />
+                <input type="submit" value="Undo" />
             </form>
         {% endfor %}
 
