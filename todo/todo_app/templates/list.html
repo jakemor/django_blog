@@ -18,6 +18,10 @@
         {% for item in todo_items %}
             <p><strong>{{ item.content }}</strong></p>
             <p>{{ item.created_at }}</p>
+            <form action="/complete_todo/" method="post">
+            	<input type="hidden" name="item" value={{ item.id }} />
+                <input type="submit" value="Complete" />
+            </form>
         {% endfor %}
 
     </div>

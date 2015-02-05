@@ -4,6 +4,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from todo_app.models import todo_item
+import datetime
 from django import forms
 
 from django import forms
@@ -45,15 +46,22 @@ def main(request):
         form = add_todo(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            p = todo_item(content=form.cleaned_data["content"],created_at="2015-02-04",completed="false", owner_id= user)
+            p = todo_item(content=form.cleaned_data["content"], owner_id= user)
             p.save()
             return HttpResponseRedirect("/home")
     else:
         form = add_todo()
-
-    the_list = todo_item.objects.filter(owner_id=user)
+    the_list = todo_item.objects.filter(owner_id=user).filter(completed = False).order_by("-created_at")
     return render_to_response("list.html", dict(todo_items=the_list, user=request.user, form=form))
 
 def user_logout(request):
     logout(request)
+    return redirect('/home')
+
+@csrf_exempt
+def complete_todo(request):
+    completed_id = request.POST['item']
+    completed_item = todo_item.objects.get(id=completed_id)
+    completed_item.completed = True
+    completed_item.save()
     return redirect('/home')
